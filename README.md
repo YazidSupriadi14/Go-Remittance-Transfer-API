@@ -14,23 +14,15 @@ Run it from the repository root. The API listens on `http://localhost:8080`.
 - Requires **Go 1.26 or newer**. The first run downloads two Go modules, so it needs internet once.
 - Nothing else to install. The database is SQLite in memory (pure Go driver), created from `schema.sql` on every start, so each start is a clean state.
 
-Optional flags (not needed for the scenarios):
-
-| Flag | Env var | Default | Meaning |
-| --- | --- | --- | --- |
-| `-port` | `PORT` | `8080` | HTTP port |
-| `-db` | `DB_PATH` | empty = in memory | Use a SQLite file instead, e.g. `-db finshot.db`, to look at the data with a viewer. The file is recreated on every start. |
-| `-schema` | `SCHEMA_PATH` | `schema.sql` | Path to the schema file |
-
 ## Stack
 
 - Go 1.26, standard library `net/http` (no web framework)
-- SQLite via `modernc.org/sqlite` (pure Go, no CGO)
+- SQLite via `modernc.org/sqlite`
 - `github.com/google/uuid` for transfer IDs
 
 ## How a client retries a create request safely
 
-Every `POST /api/transfers` must have an **`Idempotency-Key`** header.
+Every `POST /api/transfers` must have an Idempotency-Key header.
 
 - **What to send:** a UUID v4 (any string of 1-64 characters is accepted).
 - **How to generate it:** the client creates a new key **once per new transfer**, before the first attempt, and keeps it.
