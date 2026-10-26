@@ -1,0 +1,27 @@
+?   	finshot/src	[no test files]
+?   	finshot/src/httpapi	[no test files]
+?   	finshot/src/storage	[no test files]
+=== RUN   TestNewQuote
+=== RUN   TestNewQuote/example_from_the_assignment
+=== RUN   TestNewQuote/minimum_amount_pays_the_minimum_fee
+=== RUN   TestNewQuote/1%_is_exactly_the_minimum_fee
+=== RUN   TestNewQuote/fee_3000.5_rounds_half_up_to_3001
+=== RUN   TestNewQuote/fee_3000.4_rounds_down,_receive_12361.648_rounds_up
+=== RUN   TestNewQuote/large_amount_stays_exact
+=== RUN   TestNewQuote/receive_508.614_rounds_down_to_508.61
+=== RUN   TestNewQuote/3000000_gives_exactly_123600.00
+--- PASS: TestNewQuote (0.00s)
+    --- PASS: TestNewQuote/example_from_the_assignment (0.00s)
+    --- PASS: TestNewQuote/minimum_amount_pays_the_minimum_fee (0.00s)
+    --- PASS: TestNewQuote/1%_is_exactly_the_minimum_fee (0.00s)
+    --- PASS: TestNewQuote/fee_3000.5_rounds_half_up_to_3001 (0.00s)
+    --- PASS: TestNewQuote/fee_3000.4_rounds_down,_receive_12361.648_rounds_up (0.00s)
+    --- PASS: TestNewQuote/large_amount_stays_exact (0.00s)
+    --- PASS: TestNewQuote/receive_508.614_rounds_down_to_508.61 (0.00s)
+    --- PASS: TestNewQuote/3000000_gives_exactly_123600.00 (0.00s)
+=== RUN   TestCreate_ConcurrentRetriesCreateOnlyOneTransfer
+--- PASS: TestCreate_ConcurrentRetriesCreateOnlyOneTransfer (0.00s)
+=== RUN   TestCreate_SameKeyDifferentDataIsConflict
+--- PASS: TestCreate_SameKeyDifferentDataIsConflict (0.00s)
+PASS
+ok  	finshot/src/transfer	1.089s
