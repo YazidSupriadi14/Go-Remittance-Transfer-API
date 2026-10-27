@@ -1,0 +1,11 @@
+# Local SQLite files created with -db (never commit or submit them)
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Scratch output of scenarios.sh (RESULT.md is the real result file)
+RESULT_RAW.md
+
+# The assignment brief
+*.pdf

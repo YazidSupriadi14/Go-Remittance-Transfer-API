@@ -2,7 +2,7 @@
 
 Scenarios S1-S6, run in order on a freshly started app (`go run ./src`).
 Everything below is the real captured output of [`scenarios.sh`](scenarios.sh) (`bash scenarios.sh`).
-To reproduce: start the app, then run `bash scenarios.sh`. Transfer IDs and timestamps will differ.
+To reproduce: start the app, then run `bash scenarios.sh` in Git Bash. Transfer IDs and timestamps will differ.
 
 | # | Expected | Actual |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ Status: 201
 
 Response:
 ```json
-{"transferId":"09edf414-d036-4675-8a09-64afcbf247aa","status":"REQUESTED","sendAmount":"500000","fee":"5000","totalDebit":"505000","receiveAmount":"20600.00","createdAt":"2026-10-26T03:55:35.836Z","updatedAt":"2026-10-26T03:55:35.836Z","customerId":"C001","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Juan Dela Cruz"}
+{"transferId":"74a96057-03cf-41e1-adba-605f851530a5","status":"REQUESTED","sendAmount":"500000","fee":"5000","totalDebit":"505000","receiveAmount":"20600.00","createdAt":"2026-10-26T09:40:10.857Z","updatedAt":"2026-10-26T09:40:10.857Z","customerId":"C001","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Juan Dela Cruz"}
 ```
 
 ### S2 - Retry S1 with the exact same request (same Idempotency-Key)
@@ -48,7 +48,7 @@ Response header: `Idempotent-Replayed: true`
 
 Response:
 ```json
-{"transferId":"09edf414-d036-4675-8a09-64afcbf247aa","status":"REQUESTED","sendAmount":"500000","fee":"5000","totalDebit":"505000","receiveAmount":"20600.00","createdAt":"2026-10-26T03:55:35.836Z","updatedAt":"2026-10-26T03:55:35.836Z","customerId":"C001","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Juan Dela Cruz"}
+{"transferId":"74a96057-03cf-41e1-adba-605f851530a5","status":"REQUESTED","sendAmount":"500000","fee":"5000","totalDebit":"505000","receiveAmount":"20600.00","createdAt":"2026-10-26T09:40:10.857Z","updatedAt":"2026-10-26T09:40:10.857Z","customerId":"C001","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Juan Dela Cruz"}
 ```
 
 ### S3 - Same Idempotency-Key as S1, but amount 600000
@@ -86,28 +86,28 @@ Status: 201
 
 Response:
 ```json
-{"transferId":"239cad10-bbb6-434d-9780-3dccf605cf9e","status":"REQUESTED","sendAmount":"100000","fee":"3000","totalDebit":"103000","receiveAmount":"4120.00","createdAt":"2026-10-26T03:55:37.525Z","updatedAt":"2026-10-26T03:55:37.525Z","customerId":"C002","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Maria Santos"}
+{"transferId":"c69e3ef4-5b36-4c28-a165-6be2fac5d346","status":"REQUESTED","sendAmount":"100000","fee":"3000","totalDebit":"103000","receiveAmount":"4120.00","createdAt":"2026-10-26T09:40:11.955Z","updatedAt":"2026-10-26T09:40:11.955Z","customerId":"C002","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Maria Santos"}
 ```
 
 #### S4b - cancel
 
 Request:
 ```http
-POST /api/transfers/239cad10-bbb6-434d-9780-3dccf605cf9e/cancel
+POST /api/transfers/c69e3ef4-5b36-4c28-a165-6be2fac5d346/cancel
 ```
 
 Status: 200
 
 Response:
 ```json
-{"transferId":"239cad10-bbb6-434d-9780-3dccf605cf9e","status":"CANCELLED","sendAmount":"100000","fee":"3000","totalDebit":"103000","receiveAmount":"4120.00","createdAt":"2026-10-26T03:55:37.525Z","updatedAt":"2026-10-26T03:55:38.028Z","customerId":"C002","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Maria Santos"}
+{"transferId":"c69e3ef4-5b36-4c28-a165-6be2fac5d346","status":"CANCELLED","sendAmount":"100000","fee":"3000","totalDebit":"103000","receiveAmount":"4120.00","createdAt":"2026-10-26T09:40:11.955Z","updatedAt":"2026-10-26T09:40:12.300Z","customerId":"C002","sendCurrency":"KRW","receiveCurrency":"PHP","fxRate":"0.0412","recipientName":"Maria Santos"}
 ```
 
 ### S5 - Cancel the same transfer again
 
 Request:
 ```http
-POST /api/transfers/239cad10-bbb6-434d-9780-3dccf605cf9e/cancel
+POST /api/transfers/c69e3ef4-5b36-4c28-a165-6be2fac5d346/cancel
 ```
 
 Status: 409
